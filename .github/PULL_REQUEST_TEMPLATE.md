@@ -27,6 +27,7 @@ make check
 
 ## Checklist
 
+- [ ] CI is green (`Docs`, `PR title`)
 - [ ] Tests added or updated, or the reason explained above
 - [ ] Documentation updated if behaviour changed
 - [ ] New security checks include a standard mapping in the check catalog
@@ -34,6 +35,12 @@ make check
 - [ ] No new network egress beyond ports 80, 443 and 53
 - [ ] Does not add exploitation behaviour (see ADR-0007)
 - [ ] CODEOWNERS reviewed
+
+## Merge source
+
+- [ ] This PR targets `master` from a short-lived branch (`feat/`, `fix/`, `docs/`, `infra/`, `chore/`)
+- [ ] The title follows Conventional Commits — it becomes the squash commit subject
+- [ ] One logical change; unrelated refactors are split out
 
 ## Risk and rollback
 

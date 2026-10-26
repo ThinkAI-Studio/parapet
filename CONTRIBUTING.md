@@ -40,12 +40,16 @@ Requirements:
 
 | Rule | Detail |
 | --- | --- |
-| Branches | `feat/…`, `fix/…`, `docs/…`, `chore/…`, `infra/…` |
+| Branches | `feat/…`, `fix/…`, `docs/…`, `chore/…`, `infra/…` — short-lived, from `master` |
 | Commits | [Conventional Commits](https://www.conventionalcommits.org/) |
-| Pull requests | One reviewer required; `docs/` may be self-merged |
-| Merge strategy | Squash merge, one logical change per PR |
-| Ownership | Enforced by [`.github/CODEOWNERS`](.github/CODEOWNERS) |
+| Pull requests | CI is the merge gate; a human review is expected for code |
+| Merge strategy | Squash merge only; branch deleted on merge |
+| Ownership | Recorded in [`.github/CODEOWNERS`](.github/CODEOWNERS) |
 | Issue-first | Non-trivial work starts with an issue linked to a milestone |
+
+PR titles follow the same format as commits, because the squash merge uses the
+title as the commit subject: `feat(scanner): add CORS reflection probe`. A
+workflow check rejects anything else.
 
 Commit examples:
 
@@ -56,6 +60,30 @@ docs(adr): record DynamoDB decision
 infra(terraform): add S3 gateway endpoint
 ```
 
+## Branch protection and CI
+
+`master` is protected by a repository ruleset: no direct pushes, no force
+pushes, no deletion, and two required checks (`Docs`, `PR title`). The templates
+live in [`.github/rulesets/`](.github/rulesets/) and the rationale, import steps
+and the approval trade-off are in [`.github/RULESETS.md`](.github/RULESETS.md).
+
+What runs today, on a docs-only repository:
+
+| Check | What it does |
+| --- | --- |
+| **Docs** | Relative links and heading anchors resolve, JSON is valid, no conflict markers, no `.env` tracked |
+| **PR title** | Conventional Commits format |
+
+Run the link check locally before pushing:
+
+```bash
+python3 .github/scripts/check_links.py
+```
+
+Code checks (`Web quality`, `Go quality`, `CodeQL`, `SSRF corpus`) are added to
+the ruleset in the milestone that creates them — see the table in
+`RULESETS.md`. Never add a required check before its workflow exists.
+
 ## Definition of Done
 
 A change is done when:
@@ -65,7 +93,7 @@ A change is done when:
 - [ ] Documentation is updated when behaviour changes
 - [ ] New checks are added to the catalog with a standard mapping
 - [ ] No secrets, tokens, account IDs or private hostnames are included
-- [ ] A reviewer has approved
+- [ ] Reviewed by a code owner when the change touches code; docs may be self-merged
 
 ## Adding a security check
 

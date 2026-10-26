@@ -58,9 +58,9 @@ Docker Compose from week 2. If the contract exists, TV1 can build against it.
 | --- | --- |
 | Weekly sync | 30 minutes, Monday. Three lines each: done / blocked / next |
 | Async updates | Written in the issue, not in chat |
-| Pull requests | One reviewer; `docs/` may be self-merged; squash merge |
+| Pull requests | CI is the merge gate (`Docs`, `PR title`); a code owner reviews code |
 | Branch naming | `feat/…`, `fix/…`, `docs/…`, `infra/…`, `chore/…` |
-| Commits | Conventional Commits, one logical change |
+| Commits | Conventional Commits, one logical change; squash merge only |
 | Issue-first | Non-trivial work starts as an issue linked to a milestone |
 | Decision log | Any choice with a rejected alternative becomes an ADR |
 

@@ -63,4 +63,9 @@ Created in the milestone where they become true. Do not create empty files.
 - **Decisions:** one file per decision in [`adr/`](adr/README.md).
 - **Dates:** ISO 8601 (`2026-10-26`).
 - **Units:** milliseconds for latency, USD for cost, UTC for timestamps.
-- **Links:** relative links inside the repository, so they work on forks.
+- **Links:** relative links inside the repository, so they work on forks. Every
+  relative link and `#anchor` is checked in CI — run
+  `python3 .github/scripts/check_links.py` before pushing.
+- **CI:** the required checks and branch rules are documented in
+  [`.github/RULESETS.md`](../.github/RULESETS.md). A planned document is
+  referenced as `code`, not as a link, until it exists.

@@ -16,6 +16,8 @@ describe work in progress and are grouped by milestone.
 - M0 — product brief, twelve user stories, non-goals
 - M0 — scope lock, sixteen-week roadmap, team ownership
 - M0 — threat model v0 and ADRs 0001–0009
+- M0 — repository automation: ruleset templates for `master` and `v*` tags,
+  link/anchor and PR-title CI, Dependabot, issue-template contact links
 
 ### Notes
 

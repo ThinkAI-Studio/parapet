@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Security-sensitive report
+    url: https://github.com/ThinkAI-Studio/parapet/security/advisories/new
+    about: Do not open a public issue for vulnerabilities, credentials, or anything that could be used against a live site. See SECURITY.md.
+  - name: Read the scope first
+    url: https://github.com/ThinkAI-Studio/parapet/blob/master/docs/plan/scope.md
+    about: Parapet is scope-locked until week 16. Check the non-goals before proposing a feature.
+  - name: Question or idea
+    url: https://github.com/ThinkAI-Studio/parapet/discussions
+    about: Ask about the design, the benchmark, or how to reproduce a scan.
