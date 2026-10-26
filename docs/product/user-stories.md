@@ -4,7 +4,9 @@ Single source of truth for product behaviour. There is no separate PRD: each
 story carries its own spec notes, edge cases and telemetry.
 
 **Change rule:** a story may only be added or changed in a pull request that
-also updates [scope.md](../plan/scope.md) if the milestone moves.
+also updates [scope.md](../plan/scope.md) if the milestone moves. Milestone IDs
+refer to [roadmap.md](../plan/roadmap.md), where the ID is a stable label — not
+the week number.
 
 ## Personas
 
@@ -20,12 +22,12 @@ also updates [scope.md](../plan/scope.md) if the milestone moves.
 | Epic | Stories | Milestone |
 | --- | --- | --- |
 | E1 — Onboarding and ownership proof | US-01 | M2 |
-| E2 — Assessment and report | US-02, US-04 | M3–M5 |
-| E3 — Proof of impact | US-03, US-08 | M6–M10 |
-| E4 — Verification loop | US-05 | M8 |
-| E5 — CI/CD integration | US-06, US-07 | M7 |
-| E6 — Monitoring and alerts | US-09 | M8 |
-| E7 — Distribution | US-10 | M15 |
+| E2 — Assessment and report | US-02, US-04 | M3 |
+| E3 — Proof of impact | US-03, US-08 | M7–M8 |
+| E4 — Verification loop | US-05 | M6 |
+| E5 — CI/CD integration | US-06, US-07 | M5 |
+| E6 — Monitoring and alerts | US-09 | M6 |
+| E7 — Distribution | US-10 | M13 |
 | E8 — Operations | US-11 | M11 |
 | E9 — Abuse prevention | US-12 | M2 |
 
@@ -98,7 +100,7 @@ Success: ≥ 80% of added domains verified within 24 hours.
 
 ### US-02 — Get a grade and a prioritised list
 
-**Persona:** P1 · **Epic:** E2 · **Milestone:** M5 · **Priority:** P0
+**Persona:** P1 · **Epic:** E2 · **Milestone:** M3 · **Priority:** P0
 
 **Story**
 As an indie developer, I want one grade plus a short prioritised list, so that I
@@ -141,7 +143,7 @@ Success: median time from first report to first fix under 10 minutes.
 
 ### US-04 — Get remediation I can paste
 
-**Persona:** P1 · **Epic:** E2 · **Milestone:** M5 · **Priority:** P0
+**Persona:** P1 · **Epic:** E2 · **Milestone:** M3 · **Priority:** P0
 
 **Story**
 As an indie developer, I want copy-pasteable configuration for my stack, so that
@@ -185,7 +187,7 @@ Success: copy rate above 25% on failing checks.
 
 ### US-03 — Prove impact without touching your site
 
-**Persona:** P1 · **Epic:** E3 · **Milestone:** M9 · **Priority:** P0
+**Persona:** P1 · **Epic:** E3 · **Milestone:** M8 · **Priority:** P0
 
 **Story**
 As an indie developer, I want to see what an attacker could actually do, so that
@@ -228,7 +230,7 @@ Success: > 40% of users who open a demo then click "Verify fix".
 
 ### US-08 — Practise attacks in a safe range
 
-**Persona:** P3 · **Epic:** E3 · **Milestone:** M10 · **Priority:** P1
+**Persona:** P3 · **Epic:** E3 · **Milestone:** M8 · **Priority:** P1
 
 **Story**
 As a security learner, I want a place where I can run real attacks against
@@ -272,7 +274,7 @@ Success: ≥ 30% of Range visitors convert to a verified domain.
 
 ### US-05 — Confirm a fix actually worked
 
-**Persona:** P1 · **Epic:** E4 · **Milestone:** M8 · **Priority:** P0
+**Persona:** P1 · **Epic:** E4 · **Milestone:** M6 · **Priority:** P0
 
 **Story**
 As an indie developer, I want to re-scan after deploying, so that I know the fix
@@ -313,7 +315,7 @@ Success: median time from fix to verified under 3 minutes.
 
 ### US-06 — Gate deploys in CI
 
-**Persona:** P2 · **Epic:** E5 · **Milestone:** M7 · **Priority:** P0
+**Persona:** P2 · **Epic:** E5 · **Milestone:** M5 · **Priority:** P0
 
 **Story**
 As a small-team developer, I want Parapet to check my deployment, so that a
@@ -356,7 +358,7 @@ Success: installed on ≥ 3 real repositories.
 
 ### US-07 — See which commit changed the grade
 
-**Persona:** P2 · **Epic:** E5 · **Milestone:** M7 · **Priority:** P1
+**Persona:** P2 · **Epic:** E5 · **Milestone:** M5 · **Priority:** P1
 
 **Story**
 As a small-team developer, I want each scan tied to a commit, so that I can find
@@ -392,7 +394,7 @@ Success: ≥ 90% of grade changes attributable to a commit.
 
 ### US-09 — Get alerted when a grade drops
 
-**Persona:** P1 · **Epic:** E6 · **Milestone:** M8 · **Priority:** P1
+**Persona:** P1 · **Epic:** E6 · **Milestone:** M6 · **Priority:** P1
 
 **Story**
 As an indie developer, I want to be told when my grade drops, so that I react
@@ -436,7 +438,7 @@ Success: false-positive alerts under 2% of sends.
 
 ### US-10 — Publish a report and a badge
 
-**Persona:** P1 · **Epic:** E7 · **Milestone:** M15 · **Priority:** P1
+**Persona:** P1 · **Epic:** E7 · **Milestone:** M13 · **Priority:** P1
 
 **Story**
 As an indie developer, I want a public report and a badge, so that I can show

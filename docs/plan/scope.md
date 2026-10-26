@@ -82,7 +82,7 @@ Cut order:
 6. Mode B burst 2
 
 Never cut: consent and verification, SSRF controls, benchmark, or the security
-review in M14.
+review in M12.
 
 ## Assumptions
 

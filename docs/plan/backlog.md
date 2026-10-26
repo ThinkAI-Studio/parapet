@@ -23,7 +23,7 @@ _Updated 2026-10-26 — week 1._
 
 | Item | Milestone | Notes |
 | --- | --- | --- |
-| Docker Compose dev stack | M1 | Postgres, Redis, ElasticMQ, API, worker |
+| Docker Compose dev stack | M1 | DynamoDB Local, ElasticMQ (SQS), MinIO (S3), API, worker |
 | DynamoDB single-table design | M1 | Needs ADR-0004 follow-up with access patterns |
 | First 10 TLS checks | M1 | Cert chain, protocols, ciphers, HSTS |
 | GitHub Actions OIDC role | M1 | No long-lived keys |

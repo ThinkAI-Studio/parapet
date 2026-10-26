@@ -100,7 +100,7 @@ blocked.
 | No WAF in Mode A initially | Cost; CloudFront rate limiting covers the common case | M10 |
 | Single region | Cost; documented as a deliberate limitation | Never in this scope |
 | Scan engine has broad egress by design | It is the product. Compensated by no credentials, netns isolation and flow logs | Reviewed every milestone |
-| No formal pen test of our own API | Time; compensated by ASVS checklist and internal review | M14 |
+| No formal pen test of our own API | Time; compensated by ASVS checklist and internal review | M12 |
 | Email deliverability | SES sandbox; DKIM/SPF/DMARC configured | M6 |
 
 ## 8. Review log
