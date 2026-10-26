@@ -1,0 +1,71 @@
+# ============ OS / editor ============
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# ============ Secrets & credentials ============
+# Never commit real credentials. Examples are committed instead.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+!.env.example
+.aws/
+.ssh/
+secrets.tfvars
+
+# ============ Node / Next.js ============
+node_modules/
+.pnpm-store/
+.next/
+out/
+.turbo/
+dist/
+coverage/
+*.tsbuildinfo
+.vercel
+
+# ============ Go ============
+services/scanner/bin/
+*.test
+*.prof
+
+# ============ Python (bench harness) ============
+__pycache__/
+.venv/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ============ Terraform ============
+# Keep .terraform.lock.hcl committed for reproducible provider versions.
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfplan
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+*.auto.tfvars
+
+# ============ Generated / large artifacts ============
+# Raw scan output can contain third-party data. Commit summaries only.
+bench/results/raw/
+bench/results/*.jsonl
+services/lab/certs/*.pem
+tmp/
+.tmp/
+
+# ============ Local agent state ============
+.opencode/cache/
+*.local.md

@@ -1,0 +1,20 @@
+* text=auto eol=lf
+
+*.md text eol=lf
+*.go text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.tf text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff2 binary
+
+# Keep the generated lock files out of diffs, but tracked and reviewed.
+*.lock text eol=lf

@@ -1,0 +1,77 @@
+name: Docs
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    name: Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Check relative Markdown links and anchors
+        run: python3 .github/scripts/check_links.py
+
+      - name: Validate JSON files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(git ls-files '*.json')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No JSON files tracked yet."
+            exit 0
+          fi
+          for file in "${files[@]}"; do
+            python3 -m json.tool "$file" > /dev/null
+            echo "ok $file"
+          done
+
+      - name: Reject conflict markers and committed secrets files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git grep -nE '^(<<<<<<<|>>>>>>>) ' -- . ; then
+            echo "Conflict markers found." >&2
+            exit 1
+          fi
+          for forbidden in .env .env.local; do
+            if git ls-files --error-unmatch "$forbidden" > /dev/null 2>&1; then
+              echo "Forbidden file tracked: $forbidden" >&2
+              exit 1
+            fi
+          done
+
+  pr-title:
+    name: PR title
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Conventional Commits format
+        shell: bash
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          set -euo pipefail
+          pattern='^(feat|fix|docs|chore|infra|security|test|refactor|perf|ci|build|revert)(\([a-z0-9._-]+\))?!?: [A-Za-z0-9].{0,71}$'
+          if [[ ! "$TITLE" =~ $pattern ]]; then
+            echo "PR title must follow Conventional Commits, e.g." >&2
+            echo "  feat(scanner): add CORS reflection probe" >&2
+            echo "Got: $TITLE" >&2
+            exit 1
+          fi
+          echo "ok: $TITLE"

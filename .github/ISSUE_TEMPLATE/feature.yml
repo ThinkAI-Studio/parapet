@@ -1,0 +1,55 @@
+name: Feature request
+description: Suggest a new capability or check
+title: "feat: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening a request, read
+        [non-goals](https://github.com/ThinkAI-Studio/parapet/blob/main/docs/product/non-goals.md).
+        Requests that cross a non-goal (exploitation, SAST, multi-region) will
+        be closed with a link to the relevant decision.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the user and the situation, not the implementation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - New security check
+        - Scan engine
+        - Report and remediation
+        - Attack Range
+        - GitHub App / CI
+        - Monitoring and alerts
+        - Infrastructure
+        - Documentation
+    validations:
+      required: true
+
+  - type: input
+    id: standard
+    attributes:
+      label: Standard reference
+      description: For new checks, which published standard does it enforce?
+      placeholder: e.g. RFC 6797, OWASP ASVS 14.4.3, NIST SP 800-52r2
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
