@@ -12,12 +12,12 @@ _Updated 2026-10-26 — week 1._
 
 | ID | Item | Owner | Status |
 | --- | --- | --- | --- |
-| M0-1 | Docs scaffold and repository hygiene | TV3 | ✅ Done |
-| M0-2 | Check catalog with standard mapping | TV2 | ⬜ Todo |
-| M0-3 | Threat model v0 review | TV3 | ⬜ Todo |
-| M0-4 | AWS account, budget, tagging | TV3 | ⬜ Todo |
-| M0-5 | OpenAPI contract and report mock | TV1 | ⬜ Todo |
-| M0-6 | Landing page v0 | TV1 | ⬜ Todo |
+| M0-1 | [Docs scaffold and repository hygiene](https://github.com/ThinkAI-Studio/parapet/issues/7) | TV3 | ✅ Done |
+| M0-2 | [Check catalog with standard mapping](https://github.com/ThinkAI-Studio/parapet/issues/2) | TV2 | ⬜ Todo |
+| M0-3 | [Threat model v0 review](https://github.com/ThinkAI-Studio/parapet/issues/3) | TV3 | ⬜ Todo |
+| M0-4 | [AWS account, budget, tagging](https://github.com/ThinkAI-Studio/parapet/issues/4) | TV3 | ⬜ Todo |
+| M0-5 | [OpenAPI contract and report mock](https://github.com/ThinkAI-Studio/parapet/issues/5) | TV1 → TV3 | ⬜ Todo |
+| M0-6 | [Landing page v0](https://github.com/ThinkAI-Studio/parapet/issues/6) | TV1 → TV3 | ⬜ Todo |
 
 ## Next up
 
