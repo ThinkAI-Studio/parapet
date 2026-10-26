@@ -23,7 +23,7 @@ _Updated 2026-10-26 — week 1._
 
 | Item | Milestone | Notes |
 | --- | --- | --- |
-| Docker Compose dev stack | M1 | DynamoDB Local, ElasticMQ (SQS), MinIO (S3), API, worker |
+| Docker Compose dev stack | M1 | Terraform + DynamoDB Local, ElasticMQ, MinIO, API, worker |
 | DynamoDB single-table design | M1 | Needs ADR-0004 follow-up with access patterns |
 | First 10 TLS checks | M1 | Cert chain, protocols, ciphers, HSTS |
 | GitHub Actions OIDC role | M1 | No long-lived keys |
@@ -36,8 +36,6 @@ an ADR rather than a chat decision.
 
 | Decision | Blocks | Issue |
 | --- | --- | --- |
-| Authentication and account model | M1 | [#9](https://github.com/ThinkAI-Studio/parapet/issues/9) |
-| AWS account bootstrap, Terraform state, CI identity | M1 | [#10](https://github.com/ThinkAI-Studio/parapet/issues/10) |
 | SSL Labs benchmark logistics and quota | M9 | [#11](https://github.com/ThinkAI-Studio/parapet/issues/11) |
 | Legal terms, abuse contact, takedown path | M2 | [#12](https://github.com/ThinkAI-Studio/parapet/issues/12) |
 
@@ -50,3 +48,4 @@ for the current scope. See [non-goals](../product/non-goals.md).
 - Second region
 - Organisations and SSO
 - Public API keys for third parties
+- Mode B AWS lab (deferred to future roadmap)

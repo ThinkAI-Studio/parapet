@@ -1,7 +1,8 @@
 # Roadmap
 
-16 weeks. One milestone per week except M1 (two weeks). Updated every Monday.
+> **Architecture note (2026-10-26):** The roadmap has been realigned to the zero-spend architecture ([ADR-0011](../adr/0011-zero-spend-mode-a.md)). Mode B lab milestones (M10, M11) are deferred to a future roadmap outside the 16-week budget, and the landing page migration at M13 is cancelled in favour of Cloudflare Pages from day one.
 
+16 weeks. One milestone per week except M1 (two weeks). Updated every Monday.
 **Milestone IDs are labels, not week numbers.** M0 is week 1 and M13 is week 15;
 the ID is stable even if a milestone slips. When a document says "M6", read it
 as "the milestone whose exit criteria say so", never as "week 6" — the two
@@ -15,26 +16,25 @@ drifted apart when M1 was given two weeks.
 | 2–3 | M1 | Serverless end-to-end | Verified domain → scan → report, running on AWS, deployed by CI with OIDC |
 | 4 | M2 | Consent and isolation | DNS TXT verification, SSRF guard, rate limits, terms published; unverified scans impossible |
 | 5 | M3 | Full check catalog | 30 checks implemented, rating engine v1, regression fixtures |
-| 6 | M4 | Safe active probes | 10 probes implemented and rate limited; no state-changing requests |
+| 6 | M4 | Safe active probes | 9 probes implemented (SMTP STARTTLS deferred to Mode B) and rate limited; no state-changing requests |
 | 7 | M5 | GitHub App | Repo ↔ domain linking, Check Runs on deploy, commit stored on scan |
 | 8 | M6 | Continuous monitoring | Schedules, history, diff, verify-after-fix loop, drift alerts, one alert channel live |
 | 9 | M7 | Attack Range, part 1 | 4 scenarios running with browser demos |
 | 10 | M8 | Attack Range, part 2 | 8 scenarios, each linked to its matching check, demo telemetry |
 | 11 | M9 | Benchmark | 120-domain corpus compared with SSL Labs; confusion matrix published |
-| 12 | M10 | AWS lab, burst 1 | Terraform VPC/ALB/ECS/RDS; scanner migrated; game day 1 written up |
-| 13 | M11 | AWS lab, burst 2 | Multi-AZ, DR drill, cost model, lab destroyed |
+| 12 | M10 | AWS lab, burst 1 (deferred — future roadmap) | Deferred to a future roadmap outside 16-week scope and budget |
+| 13 | M11 | AWS lab, burst 2 (deferred — future roadmap) | Deferred to a future roadmap outside 16-week scope and budget |
 | 14 | M12 | Observability and review | OTel traces, dashboards, 3 alerts with runbooks, security review |
-| 15 | M13 | Launch | Public report and badge live, landing page migrated to S3 + CloudFront, waitlist invited, announcement posted |
+| 15 | M13 | Launch | Public report and badge live, landing migration cancelled — Pages from day one, waitlist invited, announcement posted |
 | 16 | Buffer | Stabilise | Fixes, final benchmark, demo video, mock exam #2 |
 
 ## Dependency chain
 
 ```
 M0 ─> M1 ─> M2 ─> M3 ─> M4
-                      ├─> M5 ─> M6 ─> M9
-                      └─> M7 ─> M8 ─> M9
-M6 ─> M10 ─> M11 ─> M12 ─> M13
-M9 ─> M13 (benchmark is published with launch)
+                      ├─> M5 ─> M6 ─> M12 ─> M13
+                      └─> M7 ─> M8 ─> M9 ──> M13
+(M10 and M11 deferred — future roadmap)
 ```
 
 The critical path is M2 → M3 → M9. Consent and the check catalog cannot slip.

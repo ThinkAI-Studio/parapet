@@ -1,6 +1,7 @@
 # 0004. DynamoDB over RDS for Mode A
 
-- **Status:** Accepted
+- **Status:** Amended by [ADR-0011](0011-zero-spend-mode-a.md)
+  (Capacity mode changed from on-demand to provisioned 25 RCU / 25 WCU for zero-spend.)
 - **Date:** 2026-10-26
 - **Deciders:** TV1, TV2, TV3
 

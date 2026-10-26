@@ -17,10 +17,10 @@ If TV1 is still empty at the M1 kickoff (week 3), the cut list in
 [scope.md](scope.md#gate-rule) is applied from the start rather than at M9:
 
 1. MCP server — dropped.
-2. Second Mode B region — dropped.
+2. Telegram alerts — dropped (keep webhooks).
 3. GitHub PR comment — dropped; Check Runs stay.
 4. Attack Range — ships 4 scenarios, not 8.
-5. Mode B burst 2 — collapsed into burst 1 (one ten-day lab, not two).
+(Mode B lab is already deferred outside the 16-week scope under ADR-0011.)
 
 What is not cut: consent and verification, SSRF controls, the benchmark, the
 security review, and the report itself. TV3 absorbs `apps/api`; TV2 absorbs the
