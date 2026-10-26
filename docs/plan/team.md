@@ -1,14 +1,39 @@
 # Team
 
-Three people, sixteen weeks, one repository.
+Three seats, sixteen weeks, one repository. **Two seats are filled as of
+2026-10-26.**
+
+## Team status
+
+| Seat | GitHub | Active | Note |
+| --- | --- | --- | --- |
+| **TV1** | — | ❌ | Open. Full-stack seat; may stay empty for the whole sixteen weeks |
+| **TV2** | `@anhkhoa` | ✅ | |
+| **TV3** | `@bnhminh1010` | ✅ | |
+
+Why this matters, stated plainly: the plan below was written for three people at
+8–10 hours each (~400 hours). Two people is ~290 hours, a **~28% capacity cut**.
+If TV1 is still empty at the M1 kickoff (week 3), the cut list in
+[scope.md](scope.md#gate-rule) is applied from the start rather than at M9:
+
+1. MCP server — dropped.
+2. Second Mode B region — dropped.
+3. GitHub PR comment — dropped; Check Runs stay.
+4. Attack Range — ships 4 scenarios, not 8.
+5. Mode B burst 2 — collapsed into burst 1 (one ten-day lab, not two).
+
+What is not cut: consent and verification, SSRF controls, the benchmark, the
+security review, and the report itself. TV3 absorbs `apps/api`; TV2 absorbs the
+minimum report UI needed to read a scan, and the landing page stays one static
+page.
 
 ## Roles and ownership
 
 | Member | Primary learning goal | Owns | Does not touch |
 | --- | --- | --- | --- |
-| **TV1** | Refresh full-stack fundamentals | `apps/web`, `apps/api`, landing page, report UI, Attack Range frontend | `infra/`, `services/scanner` |
-| **TV2** | Systems, runtime, security engineering | `services/scanner` (Go), check implementations, rating engine, `services/lab` | `apps/web`, `infra/` |
-| **TV3** | Cloud, network, security, DevOps | `infra/`, `bench/`, `attacks/`, CI/CD, observability, security review | `apps/web`, check logic |
+| **TV1** (open) | Refresh full-stack fundamentals | `apps/web`, landing page, report UI, Attack Range frontend | `infra/`, `services/scanner` |
+| **TV2** | Systems, runtime, security engineering | `services/scanner` (Go), check implementations, rating engine, `services/lab` | `infra/` |
+| **TV3** | Cloud, network, security, DevOps | `apps/api`, `infra/`, `bench/`, `attacks/`, CI/CD, observability, security review | check logic |
 
 Shared: `packages/contracts`, `docs/`, `docs/adr/`.
 

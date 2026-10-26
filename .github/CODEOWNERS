@@ -1,41 +1,33 @@
 # CODEOWNERS
 #
-# ┌──────────────────────────────────────────────────────────────────────────┐
-# │ ACTION REQUIRED: replace @maintainer-1/2/3 with the three real GitHub    │
-# │ usernames, then uncomment the rules below. Until then this file is       │
-# │ deliberately inert, so GitHub does not report unknown-owner errors.      │
-# └──────────────────────────────────────────────────────────────────────────┘
+# Active maintainers as of 2026-10-26:
+#   @bnhminh1010  TV3 — infra, CI/CD, security review, docs
+#   @anhkhoa      TV2 — scanner (Go), check catalog, rating engine, lab
+#
+# The TV1 seat (apps/web, apps/api, landing page) is currently open. Until it is
+# filled, both active maintainers review everything under /apps/.
 #
 # Format: <path pattern> <owner> [<owner> ...]
 # Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 #
-# Suggested mapping, matching docs/plan/team.md:
-#   @maintainer-1  TV1 — apps/, packages/contracts/openapi.yaml
-#   @maintainer-2  TV2 — services/, packages/contracts/check-catalog.json
-#   @maintainer-3  TV3 — infra/, bench/, attacks/, .github/, docs/security/
+# NOTE: code owner review is only enforced if branch protection enables
+# "Require review from Code Owners". Docs may be self-merged per CONTRIBUTING.md,
+# so that setting applies to code paths only.
+
+# Default owner for everything in the repo.
+* @bnhminh1010 @anhkhoa
+
+# --- Per-area ownership -------------------------------------------------------
+# Narrow these when the TV1 seat is filled, or when a path needs a single owner.
 #
-# # Default owner for everything in the repo.
-# * @maintainer-1 @maintainer-2 @maintainer-3
-#
-# # Product and planning docs are owned by everyone.
-# /docs/ @maintainer-1 @maintainer-2 @maintainer-3
-#
-# # Web app and API.
-# /apps/ @maintainer-1
-#
-# # Scan engine, lab and GitHub App.
-# /services/ @maintainer-2
-#
-# # Infrastructure, benchmark harness and attack corpus.
-# /infra/ @maintainer-3
-# /bench/ @maintainer-3
-# /attacks/ @maintainer-3
-#
-# # Shared contracts require review from all three.
-# /packages/contracts/ @maintainer-1 @maintainer-2 @maintainer-3
-#
-# # Security-sensitive files.
-# /SECURITY.md @maintainer-3
-# /docs/security/ @maintainer-3
-# /docs/adr/ @maintainer-1 @maintainer-2 @maintainer-3
-# /.github/ @maintainer-3
+# /apps/              @bnhminh1010 @anhkhoa   # TV1 seat open
+# /services/scanner/  @anhkhoa
+# /services/lab/      @anhkhoa
+# /infra/             @bnhminh1010
+# /bench/             @bnhminh1010
+# /attacks/           @bnhminh1010 @anhkhoa
+# /packages/contracts/ @bnhminh1010 @anhkhoa
+# /SECURITY.md        @bnhminh1010
+# /docs/security/     @bnhminh1010
+# /docs/adr/          @bnhminh1010 @anhkhoa
+# /.github/           @bnhminh1010

@@ -86,7 +86,9 @@ review in M14.
 
 ## Assumptions
 
-1. 16 weeks at ~8–10 hours per person per week.
+1. 16 weeks at ~8–10 hours per person per week. Written for three people
+   (~400 hours); as of 2026-10-26 only two seats are filled (~290 hours), so the
+   contingency in [team.md](team.md#team-status) applies.
 2. AWS spend under ~$150 total for the project.
 3. Team is comfortable with Linux CLI at a basic level; if not, add one week of
    Linux and networking basics before M1.
