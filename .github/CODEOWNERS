@@ -1,0 +1,41 @@
+# CODEOWNERS
+#
+# ┌──────────────────────────────────────────────────────────────────────────┐
+# │ ACTION REQUIRED: replace @maintainer-1/2/3 with the three real GitHub    │
+# │ usernames, then uncomment the rules below. Until then this file is       │
+# │ deliberately inert, so GitHub does not report unknown-owner errors.      │
+# └──────────────────────────────────────────────────────────────────────────┘
+#
+# Format: <path pattern> <owner> [<owner> ...]
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# Suggested mapping, matching docs/plan/team.md:
+#   @maintainer-1  TV1 — apps/, packages/contracts/openapi.yaml
+#   @maintainer-2  TV2 — services/, packages/contracts/check-catalog.json
+#   @maintainer-3  TV3 — infra/, bench/, attacks/, .github/, docs/security/
+#
+# # Default owner for everything in the repo.
+# * @maintainer-1 @maintainer-2 @maintainer-3
+#
+# # Product and planning docs are owned by everyone.
+# /docs/ @maintainer-1 @maintainer-2 @maintainer-3
+#
+# # Web app and API.
+# /apps/ @maintainer-1
+#
+# # Scan engine, lab and GitHub App.
+# /services/ @maintainer-2
+#
+# # Infrastructure, benchmark harness and attack corpus.
+# /infra/ @maintainer-3
+# /bench/ @maintainer-3
+# /attacks/ @maintainer-3
+#
+# # Shared contracts require review from all three.
+# /packages/contracts/ @maintainer-1 @maintainer-2 @maintainer-3
+#
+# # Security-sensitive files.
+# /SECURITY.md @maintainer-3
+# /docs/security/ @maintainer-3
+# /docs/adr/ @maintainer-1 @maintainer-2 @maintainer-3
+# /.github/ @maintainer-3
