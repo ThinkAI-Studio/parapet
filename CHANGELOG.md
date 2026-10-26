@@ -15,7 +15,7 @@ describe work in progress and are grouped by milestone.
 - M0 — repository conventions, public-repo hygiene, security policy
 - M0 — product brief, twelve user stories, non-goals
 - M0 — scope lock, sixteen-week roadmap, team ownership
-- M0 — threat model v0 and ADRs 0001–0008
+- M0 — threat model v0 and ADRs 0001–0009
 
 ### Notes
 

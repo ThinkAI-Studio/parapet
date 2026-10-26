@@ -19,7 +19,7 @@
 | 12 | M10 | AWS lab, burst 1 | Terraform VPC/ALB/ECS/RDS; scanner migrated; game day 1 written up |
 | 13 | M11 | AWS lab, burst 2 | Multi-AZ, DR drill, cost model, lab destroyed |
 | 14 | M12 | Observability and review | OTel traces, dashboards, 3 alerts with runbooks, security review |
-| 15 | M13 | Launch | Public report and badge live, waitlist invited, announcement posted |
+| 15 | M13 | Launch | Public report and badge live, landing page migrated to S3 + CloudFront, waitlist invited, announcement posted |
 | 16 | Buffer | Stabilise | Fixes, final benchmark, demo video, mock exam #2 |
 
 ## Dependency chain
