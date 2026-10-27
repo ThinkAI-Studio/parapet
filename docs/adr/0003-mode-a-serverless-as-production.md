@@ -1,6 +1,7 @@
 # 0003. Mode A serverless as production, Mode B as lab
 
-- **Status:** Accepted
+- **Status:** Superseded in part by [ADR-0011](0011-zero-spend-mode-a.md)
+  (Edge, API entry, alerts, evidence, IaC, and Mode B timing changed under ADR-0011.)
 - **Date:** 2026-10-26
 - **Deciders:** TV1, TV2, TV3
 

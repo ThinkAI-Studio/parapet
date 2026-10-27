@@ -55,13 +55,14 @@ Links to standards, benchmarks or measurements that informed the decision.
 | --- | --- | --- |
 | [0001](0001-record-architecture-decisions.md) | Record architecture decisions | Accepted |
 | [0002](0002-product-name-parapet.md) | Product name: Parapet | Accepted |
-| [0003](0003-mode-a-serverless-as-production.md) | Mode A serverless as production, Mode B as lab | Accepted |
-| [0004](0004-dynamodb-over-rds.md) | DynamoDB over RDS for Mode A | Accepted |
+| [0003](0003-mode-a-serverless-as-production.md) | Mode A serverless as production, Mode B as lab | Superseded in part by [0011](0011-zero-spend-mode-a.md) |
+| [0004](0004-dynamodb-over-rds.md) | DynamoDB over RDS for Mode A | Amended by [0011](0011-zero-spend-mode-a.md) |
 | [0005](0005-rating-model.md) | Rating model anchored to SSL Labs | Accepted |
 | [0006](0006-scope-lock-16-weeks.md) | Scope lock: 16 weeks, AI in phase 2 | Accepted |
 | [0007](0007-no-exploitation-policy.md) | No exploitation, ever | Accepted |
 | [0008](0008-public-repository.md) | Public repository from day one | Accepted |
-| [0009](0009-landing-page-hosting.md) | Landing page on Vercel first, S3 + CloudFront at M13 | Accepted |
+| [0009](0009-landing-page-hosting.md) | Landing page on Vercel first, S3 + CloudFront at M13 | Superseded by [0011](0011-zero-spend-mode-a.md) |
+| [0011](0011-zero-spend-mode-a.md) | Zero-spend architecture for Mode A | Accepted |
 
 ## Conventions
 

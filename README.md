@@ -53,17 +53,14 @@ Full list: [docs/product/non-goals.md](docs/product/non-goals.md).
 
 ## Architecture
 
-Two modes, deliberately separated:
+Mode A runs on a verified zero-spend architecture inside always-free allowances. Mode B (the AWS lab) is deferred to a future roadmap outside the 16-week scope:
 
 | Mode | Purpose | Stack |
 | --- | --- | --- |
-| **A — production** | serves real users, near-zero cost | CloudFront, API Gateway, Lambda, DynamoDB, S3, SQS, EventBridge |
-| **B — lab** | AWS/SAA learning, two short bursts | VPC, ALB, ECS Fargate, RDS, ElastiCache, EC2 Spot, WAF |
+| **A — production** | serves real users, $0 baseline cost | Cloudflare (DNS, WAF, Pages), Lambda Function URL, DynamoDB (provisioned 25/25), Cloudflare R2, SQS, EventBridge, Telegram |
+| **B — lab (deferred)** | AWS/SAA learning, future roadmap | VPC, ALB, ECS Fargate, RDS, ElastiCache, EC2 Spot, WAF (deferred) |
 
-Mode A is what users touch. Mode B exists to learn AWS deeply, run game days,
-and measure the trade-offs — then get destroyed.
-
-Details: `docs/engineering/architecture.md` (written at M1).
+Details: [ADR-0011](docs/adr/0011-zero-spend-mode-a.md) and `docs/engineering/architecture.md` (written at M1).
 
 ## Repository layout
 
@@ -71,7 +68,7 @@ Details: `docs/engineering/architecture.md` (written at M1).
 apps/          web dashboard, API handlers, landing page
 services/      scan engine (Go), vulnerable-by-design lab, GitHub App
 packages/      shared contracts: OpenAPI, schemas, check catalog
-infra/         Mode A (serverless) and Mode B (Terraform) deployments
+infra/         Mode A Terraform deployments (zero-spend)
 bench/         benchmark corpus and SSL Labs comparison harness
 attacks/       SSRF corpus and safe exploit demos used by the Range
 docs/          product, plan, engineering, security, ops, ADRs
@@ -81,16 +78,18 @@ docs/          product, plan, engineering, security, ops, ADRs
 
 | Layer | Choice |
 | --- | --- |
-| Web | Next.js, TypeScript |
-| API | API Gateway + Lambda (Node/TypeScript) |
+| Web | Next.js, TypeScript on Cloudflare Pages (`app.parapet.thinkai.id.vn`) |
+| API | AWS Lambda Function URL (Node/TypeScript) behind Cloudflare |
 | Scan engine | Go |
-| Data | DynamoDB, S3 |
-| Async | SQS, EventBridge |
-| Edge | CloudFront, Route53, ACM |
-| IaC | Terraform (Mode B), SST or SAM (Mode A) |
-| CI/CD | GitHub Actions with OIDC — no long-lived AWS keys |
+| Data | DynamoDB (provisioned 25 RCU / 25 WCU), Cloudflare R2 (evidence) |
+| Async | Amazon SQS, EventBridge |
+| Edge & DNS | Cloudflare (DNS, WAF custom rules, 1 rate-limit rule, Pages) |
+| Auth | Amazon Cognito User Pool (Essentials tier) |
+| Alerts | Telegram webhook |
+| Secrets | AWS Systems Manager Parameter Store (SecureString standard) |
+| IaC | Terraform |
+| CI/CD | GitHub Actions with OIDC — no long-lived keys |
 | Observability | OpenTelemetry, CloudWatch |
-
 ## Documentation
 
 Start at [docs/README.md](docs/README.md). The short version:
@@ -99,7 +98,7 @@ Start at [docs/README.md](docs/README.md). The short version:
 - [User stories](docs/product/user-stories.md)
 - [Scope](docs/plan/scope.md) · [Roadmap](docs/plan/roadmap.md) · [Team](docs/plan/team.md)
 - [Threat model](docs/security/threat-model.md)
-- [Architecture decisions](docs/adr/README.md)
+- [Architecture decisions](docs/adr/README.md) · [Zero-spend (ADR-0011)](docs/adr/0011-zero-spend-mode-a.md)
 
 ## Contributing
 

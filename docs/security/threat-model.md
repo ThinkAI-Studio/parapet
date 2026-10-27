@@ -10,9 +10,9 @@ Method: STRIDE, plus an abuse-case review for the scanning capability itself.
 | --- | --- | --- |
 | **User accounts** | Email, session, linked repositories | Account takeover, unauthorised scans |
 | **Verified domains** | The list of targets users authorised | Abuse, reputational and legal damage |
-| **Scan evidence** | Certificates, headers, DNS records | Third-party data exposure |
+| **Scan evidence** | Certificates, headers, DNS records (in Cloudflare R2) | Third-party data exposure |
 | **GitHub installation tokens** | Write access to users' checks | Ability to post false results in their CI |
-| **AWS credentials and roles** | Full control of our infrastructure | Cost blowout, data loss, use as an attack platform |
+| **AWS and Cloudflare credentials/roles** | Control of cloud infrastructure and edge | Cost blowout, data loss, use as an attack platform |
 | **The scan engine's network position** | It can reach arbitrary hosts by design | Becoming an SSRF proxy or a DDoS tool |
 | **Attack Range** | Intentionally vulnerable services | Being used to pivot into our own network |
 
@@ -31,20 +31,20 @@ Method: STRIDE, plus an abuse-case review for the scanning capability itself.
 ```
 Internet
   │
-  ├──[1] CloudFront / API Gateway ──> Lambda API ──> DynamoDB
-  │                                        │
-  │                                        └──> SQS
+  ├──[1] Cloudflare (DNS/WAF/Pages) ──> Lambda Function URL (shared secret) ──> DynamoDB
+  │                                                            │
+  │                                                            └──> SQS
   │
-  ├──[2] GitHub webhooks ──────────> Lambda (HMAC verified)
+  ├──[2] GitHub webhooks ──────────────> Lambda (HMAC verified)
   │
-  └──[3] Target site ──────────────> Scan engine ──> S3 evidence
-                                          │
-                                          └──[4] Attack Range (own network)
+  └──[3] Target site ──────────────────> Scan engine ──> Cloudflare R2 evidence
+                                              │
+                                              └──[4] Attack Range (own network)
 ```
 
 | # | Boundary | Rule |
 | --- | --- | --- |
-| 1 | Public to API | Authenticated, rate limited, schema validated |
+| 1 | Public to API | Authenticated (Cognito), rate limited (Cloudflare 1 rule), schema validated, shared secret header verified |
 | 2 | GitHub to API | Signature verified, replay protected, installation scoped |
 | 3 | Scan engine to target | **Untrusted both ways**: target input is hostile, our egress is privileged |
 | 4 | Scan engine to Range | Isolated network; a compromise here must not reach data stores |
@@ -53,12 +53,12 @@ Internet
 
 | Threat | Example | Mitigation |
 | --- | --- | --- |
-| **Spoofing** | Forged GitHub webhook triggers scans | HMAC-SHA256 `X-Hub-Signature-256`, secret in Secrets Manager, delivery ID deduplication |
-| **Tampering** | Modified scan result in transit or at rest | TLS everywhere, S3 SSE-KMS, versioning, write-only worker role |
+| **Spoofing** | Forged GitHub webhook triggers scans; direct Function URL requests bypass edge | HMAC-SHA256 `X-Hub-Signature-256`, secret in SSM Parameter Store SecureString, delivery ID deduplication; Function URL origin-exposure protected by shared secret header (rejected with 403 otherwise) |
+| **Tampering** | Modified scan result in transit or at rest | TLS everywhere, Cloudflare R2 private bucket with presigned URLs and 90-day lifecycle, write-only worker role |
 | **Repudiation** | Abuser claims they never requested a scan | Append-only audit log with account, target, IP, timestamp, 90-day retention |
-| **Information disclosure** | Public report leaks raw evidence or another user's domain | Public reports opt-in, unguessable IDs, OAC-only bucket, no raw evidence by default |
-| **Denial of service** | Flooding the API or the queue | WAF rate rules, per-account quotas, SQS DLQ, worker concurrency caps |
-| **Elevation of privilege** | Worker role used to read the database | Worker has no DB credentials; only SQS receive, S3 put on one prefix, logs |
+| **Information disclosure** | Public report leaks raw evidence or another user's domain | Public reports opt-in, unguessable IDs, private R2 bucket with presigned URLs, no raw evidence by default |
+| **Denial of service** | Flooding the API or the queue | Cloudflare WAF custom rules, Cloudflare 1-rate-limit-rule limit, Function URL shared secret header, per-account quotas, SQS DLQ, worker reserved concurrency (25/25 DynamoDB limit) |
+| **Elevation of privilege** | Worker role used to read the database | Worker has no DB credentials; only SQS receive, R2 put on one prefix, logs |
 | **SSRF** | User submits `http://169.254.169.254/` | Resolve, deny-list private ranges, pin IP, re-check on every redirect |
 | **Prompt injection** (phase 2) | Scanned page contains "ignore previous instructions" | Never feed raw HTML; parsed fields only; structured output; no write tools |
 
@@ -70,7 +70,7 @@ outbound requests.
 | Control | Detail |
 | --- | --- |
 | Consent | DNS TXT at `_parapet.<domain>` required before any request |
-| Ports | Only 80, 443, 53, and SMTP STARTTLS to the MX |
+| Ports | Only 80, 443, 53 (SMTP STARTTLS deferred to Mode B) |
 | Methods | Read-only: `GET`, `HEAD`, `OPTIONS`, `TRACE` to `/` only |
 | Redirects | Maximum 5, re-resolved and re-checked at each hop |
 | Rate | 1 request/second per target, 1 scan/hour per domain |
@@ -97,14 +97,17 @@ blocked.
 
 | Risk | Why accepted | Revisit |
 | --- | --- | --- |
-| No WAF in Mode A initially | Cost; CloudFront rate limiting covers the common case | M10 |
+| Cloudflare Free tier limitations | Free tier allows only 1 rate-limit rule and no edge access logs; custom WAF rules compensate for common threats | Post-launch |
+| Function URL origin exposure | Attacker discovers Lambda Function URL hostname and bypasses Cloudflare | Shielded by Cloudflare-injected shared secret header; Lambda rejects requests missing the secret with 403 Forbidden | M1 |
+| DynamoDB provisioned throttle | 25 RCU / 25 WCU free-tier limit could throttle during traffic bursts | Buffered by SQS queues and worker reserved concurrency; on-demand documented as fallback | M6 |
 | Single region | Cost; documented as a deliberate limitation | Never in this scope |
 | Scan engine has broad egress by design | It is the product. Compensated by no credentials, netns isolation and flow logs | Reviewed every milestone |
 | No formal pen test of our own API | Time; compensated by ASVS checklist and internal review | M12 |
-| Email deliverability | SES sandbox; DKIM/SPF/DMARC configured | M6 |
+| Email deliverability | Cognito built-in email sender capped at ~50/day; sufficient for pre-alpha | M6 |
 
 ## 8. Review log
 
 | Date | Milestone | Change |
 | --- | --- | --- |
 | 2026-10-26 | M0 | Initial model |
+| 2026-10-26 | M0 | Realigned to zero-spend architecture (ADR-0011): Cloudflare WAF and R2, Function URL origin-exposure shared secret, SSM Parameter Store |

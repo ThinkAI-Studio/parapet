@@ -17,6 +17,7 @@ an owner gets deleted, not left to rot.
 | Who does what, which week | [plan/roadmap.md](plan/roadmap.md), [plan/team.md](plan/team.md) |
 | What can go wrong, security-wise | [security/threat-model.md](security/threat-model.md) |
 | Why a decision was made | [adr/README.md](adr/README.md) |
+| How zero-spend architecture works | [adr/0011-zero-spend-mode-a.md](adr/0011-zero-spend-mode-a.md) |
 | How the two of us study for SAA | [team/learning-plan.md](team/learning-plan.md) |
 
 ## Index
@@ -40,7 +41,7 @@ Created in the milestone where they become true. Do not create empty files.
 
 | File | Created at | Purpose |
 | --- | --- | --- |
-| `engineering/architecture.md` | M1 | Mode A and Mode B diagrams, component responsibilities |
+| `engineering/architecture.md` | M1 | Mode A zero-spend architecture diagram, component responsibilities |
 | `engineering/data-model.md` | M1 | DynamoDB single-table design and access patterns |
 | `engineering/conventions.md` | M1 | Code style, error format, naming |
 | `engineering/testing.md` | M3 | Test pyramid, fixtures, golden files |

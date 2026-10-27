@@ -1,6 +1,7 @@
 # 0009. Landing page on Vercel first, S3 + CloudFront at M13
 
-- **Status:** Accepted
+- **Status:** Superseded by [ADR-0011](0011-zero-spend-mode-a.md)
+  (Landing page hosted on Cloudflare Pages at parapet.thinkai.id.vn from day one.)
 - **Date:** 2026-10-26
 - **Deciders:** TV1, TV3
 

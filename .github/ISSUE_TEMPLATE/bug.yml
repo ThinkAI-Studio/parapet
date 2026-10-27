@@ -48,7 +48,7 @@ body:
     attributes:
       label: Where did you see it?
       options:
-        - Production (parapet.dev)
+        - Production (app.parapet.thinkai.id.vn)
         - Local development
         - GitHub App
         - Attack Range

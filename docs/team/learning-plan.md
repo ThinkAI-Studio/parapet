@@ -41,25 +41,26 @@ The official SAA-C03 domains, weighted: **Secure architectures 30%**,
 | Week | Milestone | AWS topics it forces | Exam domain | Study focus |
 | --- | --- | --- | --- | --- |
 | 1 | M0 Foundations | Accounts, IAM users/roles, budgets, tagging, regions | Secure 1.1–1.2 | IAM policy evaluation, root vs. role, budget alarms |
-| 2–3 | M1 Serverless end-to-end | Lambda, API Gateway, DynamoDB, S3, CloudFront, OIDC | Performant 3.1, Secure 1.4 | Lambda limits and cold starts, DynamoDB capacity modes, CloudFront + OAC |
+| 2–3 | M1 Serverless end-to-end | Lambda, Function URLs, DynamoDB, SSM, OIDC | Performant 3.1, Secure 1.4 | Lambda limits and cold starts, DynamoDB provisioned capacity, Function URL security |
 | 4 | M2 Consent and isolation | Route53, ACM, WAF, VPC endpoints, Secrets Manager | Secure 1.3–1.5 | DNS record types, certificate validation, least privilege |
 | 5 | M3 Full check catalog | S3 lifecycle and storage classes, DynamoDB indexes | Cost 4.1, Performant 3.4 | Storage class trade-offs, GSI vs. LSI, hot partitions |
 | 6 | M4 Safe active probes | Lambda concurrency, SQS, DLQ, throttling | Resilient 2.2, Performant 3.3 | Decoupling, visibility timeout, backoff and retry |
-| 7 | M5 GitHub App | API Gateway auth, Secrets Manager rotation, KMS | Secure 1.4–1.6 | Envelope encryption, key policies, secret rotation |
-| 8 | M6 Continuous monitoring + **practice exam #1** | EventBridge, CloudWatch, SNS/SES, alarms | Resilient 2.3, Cost 4.1 | Event-driven patterns, metrics vs. logs, alarm design |
+| 7 | M5 GitHub App | Cognito auth, SSM Parameter Store SecureString, IAM | Secure 1.4–1.6 | Parameter Store vs. Secrets Manager, least privilege, IAM policies |
+| 8 | M6 Continuous monitoring + **practice exam #1** | EventBridge, CloudWatch, alarms, notifications | Resilient 2.3, Cost 4.1 | Event-driven patterns, metrics vs. logs, alarm design |
 | 9 | M7 Range part 1 | Isolated network, security groups, egress control | Secure 1.3, 1.5 | SG vs. NACL, subnet design, VPC flow logs |
 | 10 | M8 Range part 2 + verify loop | S3 static hosting, presigned URLs, CloudFront behaviours | Secure 1.4, Performant 3.2 | Cache behaviours, signed URLs vs. cookies, TTLs |
 | 11 | M9 Benchmark | Batch, Step Functions, cost of egress | Performant 3.1, Cost 4.2 | Orchestration choice, data transfer pricing |
-| 12 | M10 Lab burst 1 | **VPC, subnets, IGW/NAT, ALB, ECS Fargate, RDS** | Resilient 2.1, Performant 3.2 | Multi-AZ vs. read replica, target groups, health checks, Fargate vs. EC2 |
-| 13 | M11 Lab burst 2 | Multi-AZ, ElastiCache, Route53 failover, backup and DR | Resilient 2.1–2.3, Cost 4.3 | RTO/RPO, pilot light vs. warm standby, cache strategies |
+| 12 | M10 Lab burst 1 (deferred) | **VPC, subnets, IGW/NAT, ALB, ECS Fargate, RDS** (LocalStack/theory) | Resilient 2.1, Performant 3.2 | Multi-AZ vs. read replica, target groups, health checks, Fargate vs. EC2 |
+| 13 | M11 Lab burst 2 (deferred) | Multi-AZ, ElastiCache, Route53 failover, backup and DR (LocalStack/theory) | Resilient 2.1–2.3, Cost 4.3 | RTO/RPO, pilot light vs. warm standby, cache strategies |
 | 14 | M12 Observability and review | CloudWatch dashboards, X-Ray/OTel, Config, GuardDuty | Secure 1.6, Resilient 2.3 | Detection vs. prevention, compliance tooling |
-| 15 | M13 Launch | CloudFront, Route53, ACM, SES production, budgets | Cost 4.1–4.3 | Pricing model per service, free-tier boundaries |
+| 15 | M13 Launch | AWS budgets, zero-spend monitoring, pricing models | Cost 4.1–4.3 | Pricing model per service, free-tier boundaries |
 | 16 | Buffer + **practice exam #2** | Review weak domains only | All | Timed exam conditions, 130 minutes |
 | 17–18 | **SAA-C03 exam** | — | — | Light review; no new material |
 
-Weeks 12–13 are the highest-value weeks for the exam. The lab is built *because*
-it covers the topics Lambda cannot teach: VPC routing, load balancing, multi-AZ
-databases and DR. Treat the Terraform as the study notes.
+Weeks 12–13 cover the topics Lambda cannot teach: VPC routing, load balancing,
+multi-AZ databases and DR. Because the live AWS Mode B lab is deferred under
+zero-spend ([ADR-0011](../adr/0011-zero-spend-mode-a.md)), hands-on practice for
+these services uses LocalStack and practice environments rather than live AWS bursts.
 
 ## Checkpoints
 
@@ -103,7 +104,7 @@ Weekly, in the Monday sync, two lines each:
 
 ```
 SAA: domain 2 practice 18/25 — weak on SQS visibility timeout
-Project: M6 alert dedupe done; blocked on SES sandbox exit
+Project: M6 alert dedupe done; Telegram webhook alerts live
 ```
 
 No dashboards, no streaks, no app. If the two lines stop appearing, the plan has

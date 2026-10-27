@@ -65,6 +65,7 @@ them has run on `master` at least once:
 | --- | --- | --- |
 | M1 | `ci.yml` | `Web quality`, `Go quality`, `Go race` |
 | M1 | `codeql.yml` | `CodeQL` |
+| M1 | `infra.yml` | `Terraform format`, `Terraform validate` (OIDC) |
 | M2 | `ssrf.yml` | `SSRF corpus` (must be 40/40 blocked) |
 | M9 | `bench.yml` | `Benchmark agreement` |
 
