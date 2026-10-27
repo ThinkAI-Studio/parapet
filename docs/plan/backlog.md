@@ -23,11 +23,23 @@ _Updated 2026-10-26 — week 1._
 
 | Item | Milestone | Notes |
 | --- | --- | --- |
-| Docker Compose dev stack | M1 | Postgres, Redis, ElasticMQ, API, worker |
+| Docker Compose dev stack | M1 | DynamoDB Local, ElasticMQ (SQS), MinIO (S3), API, worker |
 | DynamoDB single-table design | M1 | Needs ADR-0004 follow-up with access patterns |
 | First 10 TLS checks | M1 | Cert chain, protocols, ciphers, HSTS |
 | GitHub Actions OIDC role | M1 | No long-lived keys |
 | DNS TXT verification flow | M2 | Blocking for everything else |
+
+## Open decisions (need an ADR)
+
+These are known, scoped and unowned. Each blocks a milestone, and each becomes
+an ADR rather than a chat decision.
+
+| Decision | Blocks | Issue |
+| --- | --- | --- |
+| Authentication and account model | M1 | [#9](https://github.com/ThinkAI-Studio/parapet/issues/9) |
+| AWS account bootstrap, Terraform state, CI identity | M1 | [#10](https://github.com/ThinkAI-Studio/parapet/issues/10) |
+| SSL Labs benchmark logistics and quota | M9 | [#11](https://github.com/ThinkAI-Studio/parapet/issues/11) |
+| Legal terms, abuse contact, takedown path | M2 | [#12](https://github.com/ThinkAI-Studio/parapet/issues/12) |
 
 ## Not doing now
 

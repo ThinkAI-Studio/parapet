@@ -2,6 +2,11 @@
 
 16 weeks. One milestone per week except M1 (two weeks). Updated every Monday.
 
+**Milestone IDs are labels, not week numbers.** M0 is week 1 and M13 is week 15;
+the ID is stable even if a milestone slips. When a document says "M6", read it
+as "the milestone whose exit criteria say so", never as "week 6" — the two
+drifted apart when M1 was given two weeks.
+
 ## Milestones
 
 | Week | ID | Milestone | Exit criteria |
@@ -12,9 +17,9 @@
 | 5 | M3 | Full check catalog | 30 checks implemented, rating engine v1, regression fixtures |
 | 6 | M4 | Safe active probes | 10 probes implemented and rate limited; no state-changing requests |
 | 7 | M5 | GitHub App | Repo ↔ domain linking, Check Runs on deploy, commit stored on scan |
-| 8 | M6 | Continuous monitoring | Schedules, history, diff, drift alerts, one alert channel live |
+| 8 | M6 | Continuous monitoring | Schedules, history, diff, verify-after-fix loop, drift alerts, one alert channel live |
 | 9 | M7 | Attack Range, part 1 | 4 scenarios running with browser demos |
-| 10 | M8 | Attack Range, part 2 | 8 scenarios, verify-after-fix loop, telemetry |
+| 10 | M8 | Attack Range, part 2 | 8 scenarios, each linked to its matching check, demo telemetry |
 | 11 | M9 | Benchmark | 120-domain corpus compared with SSL Labs; confusion matrix published |
 | 12 | M10 | AWS lab, burst 1 | Terraform VPC/ALB/ECS/RDS; scanner migrated; game day 1 written up |
 | 13 | M11 | AWS lab, burst 2 | Multi-AZ, DR drill, cost model, lab destroyed |

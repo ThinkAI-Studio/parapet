@@ -41,7 +41,7 @@ Rules:
    pressure: MCP server → second region → email alerts → PR comment → Range
    scenarios 5–8 → Mode B burst 2.
 5. **Never cut**: consent and verification, SSRF controls, the benchmark, the
-   M14 security review. These are the product's licence to operate.
+   M12 security review. These are the product's licence to operate.
 6. **Adding scope requires a pull request** that names the item it displaces and
    updates [scope.md](../plan/scope.md) in the same change. No verbal exceptions.
 

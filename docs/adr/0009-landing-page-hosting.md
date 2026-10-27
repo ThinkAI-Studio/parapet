@@ -1,4 +1,4 @@
-# 0009. Landing page on Vercel first, S3 + CloudFront at M15
+# 0009. Landing page on Vercel first, S3 + CloudFront at M13
 
 - **Status:** Accepted
 - **Date:** 2026-10-26
@@ -7,7 +7,7 @@
 ## Context
 
 The landing page is the only thing that exists before the product does, and its
-single job in weeks 1–14 is to collect a waitlist so that M15 has real people to
+single job in weeks 1–14 is to collect a waitlist so that M13 has real people to
 invite. It is one page, it changes weekly, and it must never compete for time
 with the scanner.
 
@@ -29,17 +29,17 @@ project ever took money.
 
 ## Decision
 
-**Phase 1 (M0 → M14): Vercel.** The landing page is a Next.js app in
+**Phase 1 (M0 → M12): Vercel.** The landing page is a Next.js app in
 `apps/landing`, deployed from `master` on Vercel's Hobby plan with preview
 deployments for pull requests. Zero infrastructure to maintain, zero cost, and a
 deploy per push.
 
-**Phase 2 (M15): S3 + CloudFront.** The same Next.js output is exported
+**Phase 2 (M13): S3 + CloudFront.** The same Next.js output is exported
 statically and served from a private S3 bucket behind CloudFront with Origin
 Access Control, a certificate from ACM in `us-east-1`, and Route53 for
 `parapet.dev` and `www`. Vercel is then removed.
 
-The migration is a scheduled deliverable of M15, not an optional cleanup, and it
+The migration is a scheduled deliverable of M13, not an optional cleanup, and it
 is deliberately performed *after* the static export is stable.
 
 **The seam that makes the migration cheap:** the waitlist form never calls a
@@ -55,7 +55,7 @@ first commit, so moving the page changes DNS and nothing else.
   when the team is building the scanner.
 - Preview deployments give TV1 a URL to share for feedback without a review
   cycle on infrastructure.
-- The M15 migration is a real, measured exercise: cache behaviours, invalidation,
+- The M13 migration is a real, measured exercise: cache behaviours, invalidation,
   OAC, certificate validation, DNS cutover — all SAA-relevant, all with a
   rollback path (DNS back to Vercel) that takes minutes.
 - The waitlist keeps working across the migration because it was never coupled
@@ -65,20 +65,20 @@ first commit, so moving the page changes DNS and nothing else.
 **Negative**
 
 - Two places to look when the landing page is broken for the next fourteen
-  weeks, and a migration that will consume part of M15.
+  weeks, and a migration that will consume part of M13.
 - Static export constrains the page: no server-side rendering, no image
   optimisation service. Acceptable for one page.
 - DNS is at Route53 but the apex points at Vercel via records we will have to
   change, so the cutover needs a TTL lowered a day in advance. Written into the
-  M15 checklist.
+  M13 checklist.
 - Someone will ask why the landing page is not on AWS like everything else, and
-  the answer is "because it will be at M15" — a temporary inconsistency that has
+  the answer is "because it will be at M13" — a temporary inconsistency that has
   to be explained.
 
 **Neutral**
 
 - CI builds the landing page on every pull request; deployment stays on Vercel's
-  Git integration until M15, then moves to GitHub Actions with OIDC.
+  Git integration until M13, then moves to GitHub Actions with OIDC.
 - The domain is registered once and does not move.
 
 ## Alternatives considered
@@ -97,12 +97,12 @@ first commit, so moving the page changes DNS and nothing else.
 4. **Stay on Vercel permanently** — simplest, and honestly fine for one page.
    Rejected because it leaves `parapet.dev` outside the AWS account and leaves
    the Hobby-plan question unresolved.
-5. **No landing page until M15** — saves a few hours and loses the only source
+5. **No landing page until M13** — saves a few hours and loses the only source
    of real users before launch. Rejected.
 
 ## References
 
-- [Roadmap M13–M15](../plan/roadmap.md)
+- [Roadmap M13–M13](../plan/roadmap.md)
 - [Team ownership](../plan/team.md)
 - [US-10 — publish a report and a badge](../product/user-stories.md#us-10--publish-a-report-and-a-badge)
 - Vercel, *Hobby plan fair use* and *Static Exports* documentation
